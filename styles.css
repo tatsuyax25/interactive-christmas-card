@@ -36,3 +36,10 @@ body {
   border-radius: 12px;
   margin: 0 auto 14px;
 }
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
