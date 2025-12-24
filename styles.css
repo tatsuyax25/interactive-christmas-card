@@ -43,3 +43,14 @@ body {
   align-items: center;
   gap: 12px;
 }
+
+button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  background: #ff4d6d;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.1s;
+}
