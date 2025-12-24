@@ -54,3 +54,8 @@ button {
   cursor: pointer;
   transition: 0.1s;
 }
+
+button:hover {
+  background: #ff758f;
+  transform: translateY(-1px);
+}
