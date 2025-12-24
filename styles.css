@@ -21,3 +21,10 @@ body {
   max-width: 760px;
   width: 95%;
 }
+
+.title {
+  margin: 0 0 12px;
+  font-size: 32px;
+  color: #ffe066;
+  text-shadow: 0 0 8px rgba(255, 224, 102, 0.6);
+}
