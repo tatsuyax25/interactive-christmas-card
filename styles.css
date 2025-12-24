@@ -28,3 +28,11 @@ body {
   color: #ffe066;
   text-shadow: 0 0 8px rgba(255, 224, 102, 0.6);
 }
+
+#scene {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  margin: 0 auto 14px;
+}
