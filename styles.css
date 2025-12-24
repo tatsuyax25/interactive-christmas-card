@@ -12,3 +12,12 @@ body {
   font-family: system-ui, sans-serif;
   color: #fff;
 }
+
+.card {
+  background: rgba(0, 0, 0, 0.65);
+  padding: 20px 24px 28px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 760px;
+  width: 95%;
+}
