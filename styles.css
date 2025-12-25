@@ -28,6 +28,26 @@ body {
   font-family: 'Mountains of Christmas', cursive;
   color: #ffe066;
   text-shadow: 0 0 8px rgba(255, 224, 102, 0.6);
+  animation: christmasLights 3s infinite;
+}
+
+@keyframes christmasLights {
+  0% {
+    color: #ff4d6d;
+    text-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
+  }
+  33% {
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  }
+  66% {
+    color: #4cc9f0;
+    text-shadow: 0 0 20px rgba(76, 201, 240, 0.8);
+  }
+  100% {
+    color: #ff4d6d;
+    text-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
+  }
 }
 
 #scene {
