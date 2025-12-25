@@ -63,3 +63,9 @@ button:hover {
 button:active {
   transform: translateY(1px);
 }
+
+#characterName {
+  min-width: 140px;
+  font-weight: 600;
+  color: #ffe066;
+}
