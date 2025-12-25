@@ -4,7 +4,7 @@ A festive, animated Christmas card built with HTML5 Canvas and JavaScript featur
 
 ## Screenshot
 
-![Interactive Christmas Card Screenshot](https://imgur.com/rMETZj3)
+![Interactive Christmas Card Screenshot](https://i.imgur.com/rMETZj3.png)
 
 ## Features
 
