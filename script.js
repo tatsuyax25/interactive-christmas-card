@@ -240,6 +240,41 @@ function drawSantaHouse(x, y, scale) {
   ctx.arc(33 + smokeOffset * 2, -140, 12, 0, Math.PI * 2);
   ctx.fill();
 
+  // Christmas decorations on house
+  // Wreath on door
+  ctx.strokeStyle = "#0f5132";
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.arc(0, -40, 8, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.fillStyle = "#ff4d6d";
+  ctx.beginPath();
+  ctx.arc(0, -48, 3, 0, Math.PI * 2);
+  ctx.fill();
+
+  // String lights along white border of house
+  const roofLights = [
+    { x: -48, y: -60 },
+    { x: -35, y: -60 },
+    { x: -22, y: -60 },
+    { x: -9, y: -60 },
+    { x: 4, y: -60 },
+    { x: 17, y: -60 },
+    { x: 30, y: -60 },
+    { x: 43, y: -60 },
+  ];
+
+  roofLights.forEach((light, i) => {
+    const twinkle = Math.sin(t * 0.08 + i) * 0.4 + 0.6;
+    const colors = ["#ff4d6d", "#ffd700", "#4cc9f0"];
+    ctx.fillStyle = colors[i % 3];
+    ctx.globalAlpha = twinkle;
+    ctx.beginPath();
+    ctx.arc(light.x, light.y, 3, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+
   ctx.restore();
 }
 
