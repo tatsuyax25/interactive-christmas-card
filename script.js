@@ -1,13 +1,7 @@
 const canvas = document.getElementById("scene");
 const ctx = canvas.getContext("2d");
 
-const characters = ["Santa", "Snowman", "Reindeer"];
-let currentIndex = 0;
 let t = 0;
-
-const nameLabel = document.getElementById("characterName");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
 
 // Resize canvas for crisp rendering
 function resizeCanvas() {
@@ -374,19 +368,15 @@ function drawCharacter() {
   const w = canvas.clientWidth;
   const h = canvas.clientHeight;
   const baseY = h * 0.75 - 20;
-  const x = w / 2;
 
-  switch (characters[currentIndex]) {
-    case "Santa":
-      drawSanta(x, baseY, 1.1);
-      break;
-    case "Snowman":
-      drawSnowman(x, baseY, 1.2);
-      break;
-    case "Reindeer":
-      drawReindeer(x, baseY, 1.1);
-      break;
-  }
+  // Reindeer on the left
+  drawReindeer(w * 0.25, baseY, 1.0);
+  
+  // Santa in the middle
+  drawSanta(w * 0.5, baseY, 1.1);
+  
+  // Snowman on the right
+  drawSnowman(w * 0.75, baseY, 1.1);
 }
 
 /* -----------------------------
@@ -408,24 +398,6 @@ function loop() {
   requestAnimationFrame(loop);
 }
 loop();
-
-/* -----------------------------
-  CHARACTER BUTTONS
------------------------------ */
-function updateCharacterName() {
-  nameLabel.textContent = characters[currentIndex];
-}
-updateCharacterName();
-
-prevBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + characters.length) % characters.length;
-  updateCharacterName();
-});
-
-nextBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % characters.length;
-  updateCharacterName();
-});
 
 /* -----------------------------
   MUSIC CONTROLS
