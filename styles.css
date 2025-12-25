@@ -18,7 +18,7 @@ body {
   padding: 20px 24px 28px;
   border-radius: 16px;
   text-align: center;
-  max-width: 760px;
+  max-width: 95vw;
   width: 95%;
 }
 
@@ -32,7 +32,7 @@ body {
 #scene {
   display: block;
   width: 100%;
-  max-width: 700px;
+  max-width: 100%;
   border-radius: 12px;
   margin: 0 auto 14px;
 }
