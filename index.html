@@ -1,32 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Character encoding for proper text display -->
   <meta charset="UTF-8">
+  
+  <!-- Viewport settings for responsive design and mobile optimization -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- iOS Safari specific settings for web app mode -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- Page title displayed in browser tab -->
   <title>Interactive Christmas Card</title>
+  
+  <!-- Google Fonts preconnect for faster font loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Mountains of Christmas font for festive title -->
   <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Main card container -->
   <div class="card">
+    <!-- Animated title with Christmas lights effect -->
     <h1 class="title">Merry Christmas!</h1>
 
+    <!-- Canvas element for drawing the Christmas scene -->
     <canvas id="scene" width="700" height="400"></canvas>
 
-    <!-- Music Control -->
+    <!-- Background music audio element -->
     <audio id="bgMusic" loop>
       <source src="we-wish-you-a-merry-christmas-short-454802.mp3" type="audio/mpeg" />
     </audio>
 
+    <!-- Controls section -->
     <div class="controls">
+      <!-- Music play/pause button -->
       <button id="musicBtn">Play Music</button>
     </div>
   </div>
 
+  <!-- Main JavaScript file for animations and interactivity -->
   <script src="script.js"></script>
 </body>
 </html>
