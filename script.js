@@ -9,6 +9,7 @@ const nameLabel = document.getElementById("characterName");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
+// Resize canvas for crisp rendering
 function resizeCanvas() {
   const ratio = window.devicePixelRatio || 1;
   const displayWidth = canvas.clientWidth;
@@ -21,6 +22,9 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
+/* -----------------------------
+   SNOW PARTICLES
+----------------------------- */
 const flakes = [];
 const FLAKE_COUNT = 120;
 
@@ -39,6 +43,49 @@ function initSnow() {
 }
 initSnow();
 
+/* -----------------------------
+   CHRISTMAS LIGHTS
+----------------------------- */
+const lights = [];
+const LIGHT_COUNT = 30;
+
+function initLights() {
+  const w = canvas.clientWidth;
+  for (let i = 0; i < LIGHT_COUNT; i++) {
+    lights.push({
+      x: (i / LIGHT_COUNT) * w + 10,
+      y: 40,
+      radius: 6,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.05 + Math.random() * 0.05,
+    });
+  }
+}
+initLights();
+
+function drawLights() {
+  for (const bulb of lights) {
+    const glow = (Math.sin(t * bulb.speed + bulb.phase) + 1) / 2;
+
+    const colors = ["#ff4d6d", "#ffd700", "#4cc9f0", "#80ed99"];
+    const color = colors[Math.floor(glow * colors.length) % colors.length];
+
+    ctx.beginPath();
+    ctx.fillStyle = color;
+    ctx.arc(bulb.x, bulb.y, bulb.radius, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.strokeStyle = "rgba(255,255,255,0.3)";
+    ctx.lineWidth = 8;
+    ctx.arc(bulb.x, bulb.y, bulb.radius + 4, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+}
+
+/* -----------------------------
+   BACKGROUND + SNOW
+----------------------------- */
 function drawBackground() {
   const w = canvas.clientWidth;
   const h = canvas.clientHeight;
@@ -80,6 +127,9 @@ function drawSnow() {
   }
 }
 
+/* -----------------------------
+   CHARACTERS (Santa, Snowman, Reindeer)
+----------------------------- */
 function drawSanta(x, y, scale) {
   ctx.save();
   ctx.translate(x, y);
@@ -301,6 +351,9 @@ function drawCharacter() {
   }
 }
 
+/* -----------------------------
+   MAIN LOOP
+----------------------------- */
 function loop() {
   t++;
 
@@ -310,6 +363,7 @@ function loop() {
   ctx.clearRect(0, 0, w, h);
 
   drawBackground();
+  drawLights();
   drawSnow();
   drawCharacter();
 
@@ -317,6 +371,9 @@ function loop() {
 }
 loop();
 
+/* -----------------------------
+   CHARACTER BUTTONS
+----------------------------- */
 function updateCharacterName() {
   nameLabel.textContent = characters[currentIndex];
 }
@@ -330,4 +387,23 @@ prevBtn.addEventListener("click", () => {
 nextBtn.addEventListener("click", () => {
   currentIndex = (currentIndex + 1) % characters.length;
   updateCharacterName();
+});
+
+/* -----------------------------
+  MUSIC CONTROLS
+----------------------------- */
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+let isPlaying = false;
+
+musicBtn.addEventListener("click", () => {
+  if (!isPlaying) {
+    music.play();
+    musicBtn.textContent = "Pause Music";
+  } else {
+    music.pause();
+    musicBtn.textContent = "Play Music";
+  }
+  isPlaying = !isPlaying;
 });
