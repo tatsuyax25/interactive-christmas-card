@@ -78,11 +78,9 @@ body {
   display: block;
   width: 100%;
   max-width: 100%;
-  height: auto;
-  aspect-ratio: 7 / 4;
   border-radius: 12px;
   margin: 0 auto 14px;
-  touch-action: none;
+  background: #000;
 }
 
 .controls {

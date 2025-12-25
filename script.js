@@ -6,11 +6,14 @@ let t = 0;
 // Resize canvas for crisp rendering
 function resizeCanvas() {
   const ratio = window.devicePixelRatio || 1;
-  const displayWidth = canvas.clientWidth;
-  const displayHeight = canvas.clientHeight;
-
-  canvas.width = displayWidth * ratio;
-  canvas.height = displayHeight * ratio;
+  const rect = canvas.getBoundingClientRect();
+  
+  canvas.width = rect.width * ratio;
+  canvas.height = rect.height * ratio;
+  
+  canvas.style.width = rect.width + 'px';
+  canvas.style.height = rect.height + 'px';
+  
   ctx.scale(ratio, ratio);
 }
 resizeCanvas();
@@ -577,10 +580,9 @@ function drawCharacter() {
 function loop() {
   t++;
 
+  const rect = canvas.getBoundingClientRect();
   ctx.setTransform(1, 0, 0, 1, 0, 0);
-  const w = canvas.clientWidth;
-  const h = canvas.clientHeight;
-  ctx.clearRect(0, 0, w, h);
+  ctx.clearRect(0, 0, rect.width, rect.height);
 
   drawBackground();
   drawLights();
