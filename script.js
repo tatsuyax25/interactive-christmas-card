@@ -370,13 +370,13 @@ function drawCharacter() {
   const baseY = h * 0.75 - 20;
 
   // Reindeer on the left
-  drawReindeer(w * 0.25, baseY, 1.0);
+  drawReindeer(w * 0.35, baseY, 1.4);
   
   // Santa in the middle
-  drawSanta(w * 0.5, baseY, 1.1);
+  drawSanta(w * 0.5, baseY, 1.5);
   
   // Snowman on the right
-  drawSnowman(w * 0.75, baseY, 1.1);
+  drawSnowman(w * 0.65, baseY, 1.4);
 }
 
 /* -----------------------------
