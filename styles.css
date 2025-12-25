@@ -1,7 +1,13 @@
+/* ===================================
+  GLOBAL STYLES
+   =================================== */
+
+/* Apply border-box sizing to all elements for easier layout calculations */
 * {
   box-sizing: border-box;
 }
 
+/* Body: Full viewport height with centered content and festive gradient background */
 body {
   margin: 0;
   min-height: 100vh;
@@ -11,11 +17,16 @@ body {
   background: radial-gradient(circle at top, #113355, #000814);
   font-family: system-ui, -apple-system, sans-serif;
   color: #fff;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased; /* Smooth fonts on macOS/iOS */
+  -moz-osx-font-smoothing: grayscale; /* Smooth fonts on Firefox */
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
+/* ===================================
+  CARD CONTAINER
+   =================================== */
+
+/* Main card: Semi-transparent dark background with rounded corners */
 .card {
   background: rgba(0, 0, 0, 0.65);
   padding: 20px 24px 28px;
@@ -26,6 +37,11 @@ body {
   box-sizing: border-box;
 }
 
+/* ===================================
+  TITLE WITH ANIMATION
+   =================================== */
+
+/* Title: Large festive font with animated color-changing effect */
 .title {
   margin: 0 0 12px;
   font-size: 48px;
@@ -33,28 +49,30 @@ body {
   color: #ffe066;
   text-shadow: 0 0 8px rgba(255, 224, 102, 0.6);
   animation: christmasLights 3s infinite;
-  -webkit-animation: christmasLights 3s infinite;
+  -webkit-animation: christmasLights 3s infinite; /* Safari support */
 }
 
+/* Animation: Cycles through Christmas light colors (red, gold, blue) */
 @keyframes christmasLights {
   0% {
-    color: #ff4d6d;
+    color: #ff4d6d; /* Red */
     text-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
   }
   33% {
-    color: #ffd700;
+    color: #ffd700; /* Gold */
     text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
   }
   66% {
-    color: #4cc9f0;
+    color: #4cc9f0; /* Blue */
     text-shadow: 0 0 20px rgba(76, 201, 240, 0.8);
   }
   100% {
-    color: #ff4d6d;
+    color: #ff4d6d; /* Back to red */
     text-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
   }
 }
 
+/* Safari/WebKit specific animation */
 @-webkit-keyframes christmasLights {
   0% {
     color: #ff4d6d;
@@ -74,15 +92,25 @@ body {
   }
 }
 
+/* ===================================
+  CANVAS
+   =================================== */
+
+/* Canvas: Full width with rounded corners for the Christmas scene */
 #scene {
   display: block;
   width: 100%;
   max-width: 100%;
   border-radius: 12px;
   margin: 0 auto 14px;
-  background: #000;
+  background: #000; /* Black background while loading */
 }
 
+/* ===================================
+  CONTROLS
+   =================================== */
+
+/* Controls container: Centered flexbox layout */
 .controls {
   display: flex;
   justify-content: center;
@@ -90,9 +118,10 @@ body {
   gap: 12px;
 }
 
+/* Button: Festive red with rounded pill shape */
 button {
   padding: 8px 14px;
-  border-radius: 999px;
+  border-radius: 999px; /* Pill shape */
   border: none;
   background: #ff4d6d;
   color: white;
@@ -101,35 +130,50 @@ button {
   transition: 0.1s;
   font-size: 14px;
   min-width: 100px;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  -webkit-appearance: none; /* Remove default iOS styling */
 }
 
+/* Button hover: Lighter shade and slight lift effect */
 button:hover {
   background: #ff758f;
   transform: translateY(-1px);
 }
 
+/* Button active: Pressed down effect */
 button:active {
   transform: translateY(1px);
   background: #ff758f;
 }
 
+/* ===================================
+  MOBILE RESPONSIVE STYLES
+   =================================== */
+
+/* Tablet and mobile adjustments */
 @media (max-width: 768px) {
+  /* Smaller title on mobile */
   .title {
     font-size: 32px;
   }
   
+  /* Reduced padding on mobile */
   .card {
     padding: 15px;
   }
   
+  /* Larger, more touch-friendly buttons */
   button {
     font-size: 16px;
     padding: 10px 16px;
   }
 }
 
+/* ===================================
+  LEGACY STYLES (unused)
+   =================================== */
+
+/* Character name display (currently not used in the UI) */
 #characterName {
   min-width: 140px;
   font-weight: 600;
