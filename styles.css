@@ -9,8 +9,11 @@ body {
   justify-content: center;
   align-items: center;
   background: radial-gradient(circle at top, #113355, #000814);
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 .card {
@@ -20,6 +23,7 @@ body {
   text-align: center;
   max-width: 95vw;
   width: 95%;
+  box-sizing: border-box;
 }
 
 .title {
@@ -29,9 +33,29 @@ body {
   color: #ffe066;
   text-shadow: 0 0 8px rgba(255, 224, 102, 0.6);
   animation: christmasLights 3s infinite;
+  -webkit-animation: christmasLights 3s infinite;
 }
 
 @keyframes christmasLights {
+  0% {
+    color: #ff4d6d;
+    text-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
+  }
+  33% {
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  }
+  66% {
+    color: #4cc9f0;
+    text-shadow: 0 0 20px rgba(76, 201, 240, 0.8);
+  }
+  100% {
+    color: #ff4d6d;
+    text-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
+  }
+}
+
+@-webkit-keyframes christmasLights {
   0% {
     color: #ff4d6d;
     text-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
@@ -54,8 +78,11 @@ body {
   display: block;
   width: 100%;
   max-width: 100%;
+  height: auto;
+  aspect-ratio: 7 / 4;
   border-radius: 12px;
   margin: 0 auto 14px;
+  touch-action: none;
 }
 
 .controls {
@@ -76,6 +103,8 @@ button {
   transition: 0.1s;
   font-size: 14px;
   min-width: 100px;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
 }
 
 button:hover {
@@ -85,6 +114,22 @@ button:hover {
 
 button:active {
   transform: translateY(1px);
+  background: #ff758f;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 32px;
+  }
+  
+  .card {
+    padding: 15px;
+  }
+  
+  button {
+    font-size: 16px;
+    padding: 10px 16px;
+  }
 }
 
 #characterName {
