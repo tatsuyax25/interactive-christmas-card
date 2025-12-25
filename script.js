@@ -162,6 +162,72 @@ function drawSnow() {
 /* -----------------------------
   CHARACTERS (Santa, Snowman, Reindeer)
 ----------------------------- */
+function drawSantaHouse(x, y, scale) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(scale, scale);
+
+  // House body
+  ctx.fillStyle = "#8b4513";
+  ctx.fillRect(-50, -60, 100, 80);
+
+  // Roof
+  ctx.fillStyle = "#c1121f";
+  ctx.beginPath();
+  ctx.moveTo(-60, -60);
+  ctx.lineTo(0, -100);
+  ctx.lineTo(60, -60);
+  ctx.closePath();
+  ctx.fill();
+
+  // Snow on roof
+  ctx.fillStyle = "#ffffff";
+  ctx.beginPath();
+  ctx.moveTo(-60, -60);
+  ctx.lineTo(-55, -65);
+  ctx.lineTo(55, -65);
+  ctx.lineTo(60, -60);
+  ctx.closePath();
+  ctx.fill();
+
+  // Door
+  ctx.fillStyle = "#654321";
+  ctx.fillRect(-15, -20, 30, 40);
+
+  // Door knob
+  ctx.fillStyle = "#ffd700";
+  ctx.beginPath();
+  ctx.arc(8, 0, 3, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Windows
+  ctx.fillStyle = "#ffe066";
+  ctx.fillRect(-40, -45, 20, 20);
+  ctx.fillRect(20, -45, 20, 20);
+
+  // Window frames
+  ctx.strokeStyle = "#654321";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(-30, -55);
+  ctx.lineTo(-30, -25);
+  ctx.moveTo(-50, -35);
+  ctx.lineTo(-20, -35);
+  ctx.moveTo(30, -55);
+  ctx.lineTo(30, -25);
+  ctx.moveTo(10, -35);
+  ctx.lineTo(50, -35);
+  ctx.stroke();
+
+  // Chimney
+  ctx.fillStyle = "#8b4513";
+  ctx.fillRect(25, -95, 20, 40);
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(25, -100, 20, 5);
+
+  ctx.restore();
+}
+
 function drawSanta(x, y, scale) {
   ctx.save();
   ctx.translate(x, y);
@@ -368,6 +434,9 @@ function drawCharacter() {
   const w = canvas.clientWidth;
   const h = canvas.clientHeight;
   const baseY = h * 0.75 - 20;
+
+  // Santa's house on the left, sitting on snow
+  drawSantaHouse(w * 0.15, baseY + 20, 2.2);
 
   // Reindeer on the left
   drawReindeer(w * 0.35, baseY, 1.4);
