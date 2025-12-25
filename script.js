@@ -23,7 +23,7 @@ resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
 /* -----------------------------
-   SNOW PARTICLES
+  SNOW PARTICLES
 ----------------------------- */
 const flakes = [];
 const FLAKE_COUNT = 120;
@@ -44,47 +44,85 @@ function initSnow() {
 initSnow();
 
 /* -----------------------------
-   CHRISTMAS LIGHTS
+  CHRISTMAS LIGHTS (HANGING)
 ----------------------------- */
 const lights = [];
 const LIGHT_COUNT = 30;
 
 function initLights() {
   const w = canvas.clientWidth;
+  const curveHeight = 35; // how much the string sags
+
   for (let i = 0; i < LIGHT_COUNT; i++) {
+    const pct = i / (LIGHT_COUNT - 1);
+
+    // X position evenly spaced
+    const x = pct * w;
+
+    // Y position follows a gentle curve (sagging string)
+    const y = 40 + Math.sin(pct * Math.PI) * curveHeight;
+
     lights.push({
-      x: (i / LIGHT_COUNT) * w + 10,
-      y: 40,
+      x,
+      y,
       radius: 6,
       phase: Math.random() * Math.PI * 2,
-      speed: 0.05 + Math.random() * 0.05,
+      speed: 0.05 + Math.random() * 0.05
     });
   }
 }
+
 initLights();
 
 function drawLights() {
+  const w = canvas.clientWidth;
+
+  // Draw the string first
+  ctx.strokeStyle = "#3a3a3a";
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+
+  for (let i = 0; i < lights.length; i++) {
+    const b = lights[i];
+    if (i === 0) ctx.moveTo(b.x, b.y);
+    else ctx.lineTo(b.x, b.y);
+  }
+
+  ctx.stroke();
+
+  // Draw bulbs hanging from the string
   for (const bulb of lights) {
+    const sway = Math.sin(t * 0.02 + bulb.phase) * 3;
+
+    const bulbX = bulb.x + sway;
+    const bulbY = bulb.y + 10; // hanging below the string
+
     const glow = (Math.sin(t * bulb.speed + bulb.phase) + 1) / 2;
 
     const colors = ["#ff4d6d", "#ffd700", "#4cc9f0", "#80ed99"];
     const color = colors[Math.floor(glow * colors.length) % colors.length];
 
+    // Bulb
     ctx.beginPath();
     ctx.fillStyle = color;
-    ctx.arc(bulb.x, bulb.y, bulb.radius, 0, Math.PI * 2);
+    ctx.arc(bulbX, bulbY, bulb.radius, 0, Math.PI * 2);
     ctx.fill();
 
+    // Glow halo
     ctx.beginPath();
-    ctx.strokeStyle = "rgba(255,255,255,0.3)";
-    ctx.lineWidth = 8;
-    ctx.arc(bulb.x, bulb.y, bulb.radius + 4, 0, Math.PI * 2);
+    ctx.strokeStyle = color + "55";
+    ctx.lineWidth = 10;
+    ctx.arc(bulbX, bulbY, bulb.radius + 4, 0, Math.PI * 2);
     ctx.stroke();
+
+    // Little connector piece
+    ctx.fillStyle = "#3a3a3a";
+    ctx.fillRect(bulbX - 3, bulbY - 10, 6, 6);
   }
 }
 
 /* -----------------------------
-   BACKGROUND + SNOW
+  BACKGROUND + SNOW
 ----------------------------- */
 function drawBackground() {
   const w = canvas.clientWidth;
@@ -128,7 +166,7 @@ function drawSnow() {
 }
 
 /* -----------------------------
-   CHARACTERS (Santa, Snowman, Reindeer)
+  CHARACTERS (Santa, Snowman, Reindeer)
 ----------------------------- */
 function drawSanta(x, y, scale) {
   ctx.save();
@@ -352,7 +390,7 @@ function drawCharacter() {
 }
 
 /* -----------------------------
-   MAIN LOOP
+  MAIN LOOP
 ----------------------------- */
 function loop() {
   t++;
@@ -372,7 +410,7 @@ function loop() {
 loop();
 
 /* -----------------------------
-   CHARACTER BUTTONS
+  CHARACTER BUTTONS
 ----------------------------- */
 function updateCharacterName() {
   nameLabel.textContent = characters[currentIndex];
