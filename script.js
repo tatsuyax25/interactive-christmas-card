@@ -225,6 +225,21 @@ function drawSantaHouse(x, y, scale) {
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(25, -100, 20, 5);
 
+  // Smoke from chimney
+  const smokeOffset = Math.sin(t * 0.05) * 3;
+  ctx.fillStyle = "rgba(200, 200, 200, 0.6)";
+  ctx.beginPath();
+  ctx.arc(35 + smokeOffset, -110, 8, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "rgba(180, 180, 180, 0.5)";
+  ctx.beginPath();
+  ctx.arc(38 + smokeOffset * 1.5, -125, 10, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "rgba(160, 160, 160, 0.4)";
+  ctx.beginPath();
+  ctx.arc(33 + smokeOffset * 2, -140, 12, 0, Math.PI * 2);
+  ctx.fill();
+
   ctx.restore();
 }
 
@@ -430,6 +445,76 @@ function drawReindeer(x, y, scale) {
   ctx.restore();
 }
 
+function drawChristmasTree(x, y, scale) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(scale, scale);
+
+  // Tree trunk
+  ctx.fillStyle = "#654321";
+  ctx.fillRect(-10, 10, 20, 30);
+
+  // Tree layers (3 triangles)
+  ctx.fillStyle = "#0f5132";
+  ctx.beginPath();
+  ctx.moveTo(-60, 10);
+  ctx.lineTo(0, -50);
+  ctx.lineTo(60, 10);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.moveTo(-50, -20);
+  ctx.lineTo(0, -80);
+  ctx.lineTo(50, -20);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.moveTo(-40, -50);
+  ctx.lineTo(0, -110);
+  ctx.lineTo(40, -50);
+  ctx.closePath();
+  ctx.fill();
+
+  // Star on top
+  ctx.fillStyle = "#ffd700";
+  ctx.beginPath();
+  for (let i = 0; i < 5; i++) {
+    const angle = (i * 4 * Math.PI) / 5 - Math.PI / 2;
+    const radius = i % 2 === 0 ? 12 : 6;
+    const px = Math.cos(angle) * radius;
+    const py = Math.sin(angle) * radius - 120;
+    if (i === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+  ctx.fill();
+
+  // Ornaments
+  const ornaments = [
+    { x: -30, y: -10, color: "#ff4d6d" },
+    { x: 20, y: -5, color: "#4cc9f0" },
+    { x: -15, y: -35, color: "#ffd700" },
+    { x: 25, y: -40, color: "#ff4d6d" },
+    { x: 0, y: -60, color: "#4cc9f0" },
+    { x: -20, y: -65, color: "#ffd700" },
+    { x: 15, y: -70, color: "#ff4d6d" },
+  ];
+
+  ornaments.forEach(ornament => {
+    const twinkle = Math.sin(t * 0.1 + ornament.x) * 0.3 + 0.7;
+    ctx.fillStyle = ornament.color;
+    ctx.globalAlpha = twinkle;
+    ctx.beginPath();
+    ctx.arc(ornament.x, ornament.y, 5, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+
+  ctx.restore();
+}
+
 function drawCharacter() {
   const w = canvas.clientWidth;
   const h = canvas.clientHeight;
@@ -446,6 +531,9 @@ function drawCharacter() {
   
   // Snowman on the right
   drawSnowman(w * 0.65, baseY, 1.4);
+
+  // Christmas tree on the right side
+  drawChristmasTree(w * 0.85, baseY + 40, 1.8);
 }
 
 /* -----------------------------
