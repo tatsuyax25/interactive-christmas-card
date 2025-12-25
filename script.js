@@ -13,8 +13,6 @@ function resizeCanvas() {
   
   canvas.style.width = rect.width + 'px';
   canvas.style.height = rect.height + 'px';
-  
-  ctx.scale(ratio, ratio);
 }
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
@@ -27,8 +25,8 @@ const FLAKE_COUNT = 120;
 
 function initSnow() {
   flakes.length = 0;
-  const w = canvas.clientWidth;
-  const h = canvas.clientHeight;
+  const w = canvas.width;
+  const h = canvas.height;
   for (let i = 0; i < FLAKE_COUNT; i++) {
     flakes.push({
       x: Math.random() * w,
@@ -48,7 +46,7 @@ const LIGHT_COUNT = 30;
 const LIGHT_COLORS = ["#ff4d6d", "#ffd700", "#4cc9f0", "#80ed99"];
 
 function initLights() {
-  const w = canvas.clientWidth;
+  const w = canvas.width;
   const curveHeight = 35; // how much the string sags
 
   for (let i = 0; i < LIGHT_COUNT; i++) {
@@ -73,7 +71,7 @@ function initLights() {
 initLights();
 
 function drawLights() {
-  const w = canvas.clientWidth;
+  const w = canvas.width;
 
   // Draw the string first
   ctx.strokeStyle = "#3a3a3a";
@@ -122,8 +120,8 @@ function drawLights() {
   BACKGROUND + SNOW
 ----------------------------- */
 function drawBackground() {
-  const w = canvas.clientWidth;
-  const h = canvas.clientHeight;
+  const w = canvas.width;
+  const h = canvas.height;
   const snowLine = h * 0.75;
 
   const grad = ctx.createLinearGradient(0, 0, 0, snowLine);
@@ -145,8 +143,8 @@ function drawBackground() {
 }
 
 function drawSnow() {
-  const w = canvas.clientWidth;
-  const h = canvas.clientHeight;
+  const w = canvas.width;
+  const h = canvas.height;
   ctx.fillStyle = "white";
 
   for (const f of flakes) {
@@ -554,8 +552,8 @@ function drawChristmasTree(x, y, scale) {
 }
 
 function drawCharacter() {
-  const w = canvas.clientWidth;
-  const h = canvas.clientHeight;
+  const w = canvas.width;
+  const h = canvas.height;
   const baseY = h * 0.75 - 20;
 
   // Santa's house on the left, sitting on snow
@@ -580,9 +578,8 @@ function drawCharacter() {
 function loop() {
   t++;
 
-  const rect = canvas.getBoundingClientRect();
   ctx.setTransform(1, 0, 0, 1, 0, 0);
-  ctx.clearRect(0, 0, rect.width, rect.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   drawBackground();
   drawLights();
