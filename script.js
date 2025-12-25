@@ -48,6 +48,7 @@ initSnow();
 ----------------------------- */
 const lights = [];
 const LIGHT_COUNT = 30;
+const LIGHT_COLORS = ["#ff4d6d", "#ffd700", "#4cc9f0", "#80ed99"];
 
 function initLights() {
   const w = canvas.clientWidth;
@@ -99,8 +100,7 @@ function drawLights() {
 
     const glow = (Math.sin(t * bulb.speed + bulb.phase) + 1) / 2;
 
-    const colors = ["#ff4d6d", "#ffd700", "#4cc9f0", "#80ed99"];
-    const color = colors[Math.floor(glow * colors.length) % colors.length];
+    const color = LIGHT_COLORS[Math.floor(glow * LIGHT_COLORS.length) % LIGHT_COLORS.length];
 
     // Bulb
     ctx.beginPath();
@@ -437,7 +437,9 @@ let isPlaying = false;
 
 musicBtn.addEventListener("click", () => {
   if (!isPlaying) {
-    music.play();
+    music.play().catch(err => {
+      console.warn("Could not play audio:", err.message);
+    });
     musicBtn.textContent = "Pause Music";
   } else {
     music.pause();
